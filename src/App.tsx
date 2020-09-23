@@ -9,6 +9,7 @@ function App() {
                 <ToolBtn content={ToolBtn.IMPORT_BTN}></ToolBtn>
                 <ToolBtn content={ToolBtn.EXPORT_BTN}></ToolBtn>
             </div>
+            <div id='chartContainer' className='chart-container'></div>
         </div>
     );
 }

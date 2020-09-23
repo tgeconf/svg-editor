@@ -21,7 +21,23 @@ export default class ToolBtn extends React.Component<IToolBtn, IToolBtn>{
         const mouseClick = () => {
             switch (this.state.content) {
                 case ToolBtn.IMPORT_BTN:
-                    alert('import');
+                    const input: HTMLInputElement = document.createElement("input");
+                    input.setAttribute('type', 'file');
+                    input.onchange = (changeEvt) => {
+                        if (input.files) {
+                            const svgChart: File = input.files[0];
+                            const fr = new FileReader();
+                            fr.readAsText(svgChart);
+                            fr.onload = function () {
+                                const chartStr: string | ArrayBuffer | null = fr.result;
+                                const chartContainer: HTMLElement | null = document.getElementById('chartContainer');
+                                if (typeof chartStr === 'string' && chartContainer && typeof chartContainer !== 'undefined'){
+                                    chartContainer.innerHTML = chartStr;
+                                }
+                            }
+                        }
+                    }
+                    input.click();
                     break;
                 case ToolBtn.EXPORT_BTN:
                     alert('export');
